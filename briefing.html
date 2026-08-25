@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Briefing Sáng 25/08/2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-main: #f8fafc;
+  --card-bg: #ffffff;
+  --card-border: rgba(226, 232, 240, 0.8);
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --accent: #2563eb;
+  --success: #059669;
+  --danger: #dc2626;
+  --warning: #d97706;
+  --header-bg: #f1f5f9;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 5px; color: #0f172a; }
+.gradient-text { background: linear-gradient(135deg, #2563eb, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+h2 { font-size: 1.5rem; font-weight: 600; margin-top: 45px; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; color: #0f172a; }
+h2::before { content: ''; display: block; width: 4px; height: 24px; background: linear-gradient(to bottom, #3b82f6, #8b5cf6); border-radius: 4px; }
+
+h3 { color: #334155; font-weight: 600; font-size: 1.15rem; margin-top: 30px; margin-bottom: 12px; }
+
+.nav-bar { display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 10px; font-size: 0.95rem; color: var(--text-muted); }
+.nav-bar span { background: #f8fafc; padding: 6px 14px; border-radius: 20px; border: 1px solid #e2e8f0; font-weight: 500; }
+.nav-bar strong { color: #0f172a; font-weight: 700; }
+
+.disclaimer { font-size: 12.5px; color: #64748b; margin: 20px 0 40px; padding: 12px 16px; background: #f8fafc; border-radius: 8px; border-left: 3px solid #cbd5e1; }
+
+.table-container { border: 1px solid var(--card-border); border-radius: 12px; overflow: hidden; margin: 15px 0 25px; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th { background: #f8fafc; color: #475569; font-weight: 600; padding: 16px 18px; text-align: left; border-bottom: 1px solid var(--card-border); }
+td { padding: 14px 18px; border-bottom: 1px solid var(--card-border); color: #334155; }
+tr:last-child td { border-bottom: none; }
+
+.up { color: var(--success); font-weight: 600; }
+.down { color: var(--danger); font-weight: 600; }
+
+.warn { background: #fef2f2; border: 1px solid #fecaca; border-radius: 10px; padding: 16px 20px; margin: 15px 0; }
+.warn-title { color: #dc2626; font-weight: 700; font-size: 1rem; margin-bottom: 8px; }
+
+.info { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 10px; padding: 16px 20px; margin: 15px 0; }
+
+.summary { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px; padding: 20px 24px; margin: 15px 0; }
+.summary-title { color: #059669; font-size: 1.1em; font-weight: 700; display: block; margin-bottom: 8px; }
+
+ul, ol { margin: 10px 0; padding-left: 24px; }
+li { margin-bottom: 8px; }
+
+/* Badges */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+}
+.tag-hold     { background: rgba(59, 130, 246, 0.10); color: #2563eb; border: 1px solid rgba(59, 130, 246, 0.25); }
+.tag-watch    { background: rgba(245, 158, 11, 0.10); color: #d97706; border: 1px solid rgba(245, 158, 11, 0.25); }
+.tag-strategy { background: rgba(168, 85, 247, 0.10); color: #9333ea; border: 1px solid rgba(168, 85, 247, 0.25); }
+.tag-gold     { background: rgba(234, 179, 8, 0.10); color: #ca8a04; border: 1px solid rgba(234, 179, 8, 0.25); }
+.tag-buy      { background: rgba(16, 185, 129, 0.10); color: #059669; border: 1px solid rgba(16, 185, 129, 0.25); }
+
+/* Dropdown Accordion */
+details {
+  background: #ffffff;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  margin: 6px 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+details[open] {
+  background: #ffffff;
+  border-color: #bfdbfe;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+summary {
+  cursor: pointer;
+  font-weight: 500;
+  color: #1e293b;
+  font-size: 13.5px;
+  padding: 12px 16px;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.2s;
+  border-radius: 8px;
+}
+summary::-webkit-details-marker { display: none; }
+summary::after {
+  content: '▼';
+  font-size: 10px;
+  color: var(--text-muted);
+  transition: transform 0.3s;
+}
+details[open] summary::after {
+  transform: rotate(180deg);
+  color: var(--accent);
+}
+summary:hover { background: #f1f5f9; }
+details ul {
+  margin: 0;
+  padding: 12px 16px 16px 36px;
+  background: #ffffff;
+  border-top: 1px solid var(--card-border);
+  font-size: 13.5px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+details li { margin-bottom: 8px; color: #475569; }
+details li strong { color: #0f172a; }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<h1>📋 <span class="gradient-text">Briefing Sáng — Thứ Ba 25/08/2026</span></h1>
+<div class="nav-bar">
+  <span>NAV: <strong>1.538,1 triệu</strong></span>
+  <span>Vốn: <strong>1.622,0 triệu</strong></span>
+  <span>P&L: <strong class="down">−83,87 triệu (−5,17%)</strong></span>
+  <span>Cash: <strong>~28,7 triệu</strong></span>
+  <span>VN-Index: <strong class="up">1.788,78 (+1,17%)</strong></span>
+  <span>XAU: <strong class="up">4.685 USD/oz</strong></span>
+</div>
+<div class="disclaimer">
+  ⚠️ Báo cáo được tạo tự động lúc 08:42 ngày 25/08/2026. Giá cổ phiếu: đóng cửa phiên 24/08/2026. Giá vàng: cập nhật sáng 25/08. Đây KHÔNG phải tư vấn đầu tư. Mọi quyết định giao dịch do nhà đầu tư tự chịu trách nhiệm.
+</div>
+
+<!-- ===== MỤC 1: TIN TỨC ===== -->
+<h2>1. Tin tức & Sự kiện</h2>
+
+<h3>🌐 Vĩ mô quốc tế</h3>
+<ul>
+  <li><strong>Mỹ phân hóa:</strong> Dow Jones <span class="up">+0,26%</span> (53.417 đ), S&P 500 <span class="down">−0,28%</span> (7.653 đ), Nasdaq <span class="down">−0,76%</span> (25.980 đ). Nhóm công nghệ chịu áp lực chốt lời, nhóm phòng thủ/công nghiệp nâng Dow.</li>
+  <li><strong>Châu Á giảm:</strong> KOSPI <span class="down">−3,12%</span> (6.697 đ), Nikkei <span class="down">−0,70%</span> (65.528 đ), Shanghai <span class="down">−0,61%</span> (3.882 đ), Hang Seng <span class="down">−1,89%</span> (25.517 đ).</li>
+  <li><strong>Bộ Tài chính Mỹ</strong> mở rộng chương trình mua lại trái phiếu dài hạn → lợi suất giảm → DXY suy yếu mạnh, hỗ trợ vàng và dòng vốn vào EM.</li>
+  <li><strong>Lo ngại nợ công Mỹ:</strong> Rủi ro tài khóa + bất ổn địa chính trị (eo biển Hormuz) → dòng tiền phòng thủ chảy mạnh vào vàng.</li>
+  <li><strong>Sự kiện tuần này:</strong> PCE lõi tháng 7 (Mỹ), GDP Q2 Mỹ (ước tính), trợ cấp thất nghiệp, Jackson Hole.</li>
+</ul>
+
+<h3>🇻🇳 Việt Nam</h3>
+<ul>
+  <li><strong>VN-Index 24/08:</strong> <span class="up">+20,66 điểm (+1,17%)</span> lên <strong>1.788,78</strong> — tiệm cận mốc tâm lý 1.800 điểm. Có thời điểm vượt 1.795. 204 mã tăng / 118 giảm.</li>
+  <li><strong>Thanh khoản HOSE:</strong> 18.700–19.400 tỷ đồng, dòng tiền duy trì tích cực.</li>
+  <li><strong>Khối ngoại:</strong> <span class="up">MUA RÒNG phiên thứ 2 liên tiếp</span> (+188 tỷ). Top mua: <strong>HPG</strong> (+106 tỷ, #1 toàn sàn), VIC, VPB, MSN, VIX. Top bán: VCB, FPT (chốt lời nhẹ).</li>
+  <li><strong>GDP Q2/2026:</strong> Tăng trưởng 8,39% — vượt kỳ vọng. Tổ chức quốc tế nâng dự báo GDP cả năm.</li>
+  <li><strong>Lãi suất huy động:</strong> Áp lực tăng nhẹ, CHCM kỳ hạn đặc biệt 8,7–9,5%/năm.</li>
+  <li><strong>FTSE nâng hạng:</strong> 27 mã trong rổ FTSE GEIS. Dòng vốn thụ động ước ~78.900 tỷ (3,0–4,28 tỷ USD). Đợt 1 giải ngân: 18/09/2026 (10%).</li>
+</ul>
+
+<h3>📌 Liên quan danh mục & watchlist</h3>
+<ul>
+  <li><strong>HPG:</strong> NN mua ròng #1 toàn sàn (+106 tỷ). Lọt FTSE Mid Cap. BSC dự phóng LNST Q3 đạt 6.000–6.500 tỷ. Giá mục tiêu CTCK: 32.700–35.900đ. Dung Quất 2 đạt 60% tiến độ.</li>
+  <li><strong>SHB:</strong> 1 trong 8 bank lọt FTSE Small Cap. Tăng vốn điều lệ lên 53.442 tỷ thành công. Chuẩn bị chia cổ tức 16% (10% CP + 6% tiền mặt). Triển khai gói tín dụng 47.000 tỷ cho SME.</li>
+  <li><strong>MBS:</strong> Xếp vào FTSE Micro Cap. Khuyến nghị giữ vị thế, không mua đuổi gần 1.800 điểm.</li>
+  <li><strong>KSB:</strong> 6T2026 đạt DTT 505 tỷ (+87%), LNTT 135 tỷ (+55%). Tăng công suất mỏ đá Tân Mỹ. Đẩy mạnh pháp lý KCN Đất Cuốc mở rộng và KCN Hoa Lư.</li>
+  <li><strong>SHS:</strong> Đã công bố BCTC soát xét bán niên (20/08). Triển khai gói Margin S30. Thu xếp phát hành trái phiếu cho SHB.</li>
+  <li><strong>VIX:</strong> Lọt FTSE Small Cap. NN gom ròng. Danh mục tự doanh >18.400 tỷ theo giá trị hợp lý (GEE, GEX, GEL).</li>
+  <li><strong>GEX:</strong> Lọt FTSE Small Cap. TPS nhận định GEX đã thoát kênh giảm giá ngắn hạn. Đang tích lũy kiểm định kháng cự 27.000.</li>
+  <li><strong>MSN:</strong> Lọt FTSE Small Cap. NN gom ròng mạnh. Kế hoạch LNST cả năm tăng mạnh lên 10.000–11.500 tỷ (+40% YoY).</li>
+  <li><strong>CII:</strong> 🔔 Ngày 27/08 chốt quyền mua trái phiếu chuyển đổi quy mô 6.720 tỷ (kỳ hạn 25 năm, lãi suất 14,5%/năm từ kỳ 13).</li>
+  <li><strong>FPT:</strong> Lọt FTSE Small Cap. NN chốt lời nhẹ phiên 24/08. Nền tảng lợi nhuận và vị thế công nghệ vững chắc.</li>
+</ul>
+
+<!-- ===== MỤC 2: THẾ GIỚI & HÀNG HÓA ===== -->
+<h2>2. Thế giới & Hàng hóa</h2>
+
+<div class="table-container">
+<table>
+  <tr>
+    <th>Chỉ số / Hàng hóa</th>
+    <th>Giá trị</th>
+    <th>Thay đổi</th>
+  </tr>
+  <tr><td>🇺🇸 Dow Jones</td><td>53.417,16</td><td><span class="up">+0,26%</span></td></tr>
+  <tr><td>🇺🇸 S&P 500</td><td>7.652,86</td><td><span class="down">−0,28%</span></td></tr>
+  <tr><td>🇺🇸 Nasdaq</td><td>25.980,19</td><td><span class="down">−0,76%</span></td></tr>
+  <tr><td>🇯🇵 Nikkei 225</td><td>65.528,09</td><td><span class="down">−0,70%</span></td></tr>
+  <tr><td>🇰🇷 KOSPI</td><td>6.696,96</td><td><span class="down">−3,12%</span></td></tr>
+  <tr><td>🇨🇳 Shanghai</td><td>3.882,00</td><td><span class="down">−0,61%</span></td></tr>
+  <tr><td>🇭🇰 Hang Seng</td><td>25.517,33</td><td><span class="down">−1,89%</span></td></tr>
+  <tr><td>🛢️ Dầu WTI</td><td>85,22 USD/thùng</td><td><span class="down">−2,1%</span></td></tr>
+  <tr><td>🥇 Vàng XAU/USD</td><td>4.685,26 USD/oz</td><td><span class="up">+0,71%</span></td></tr>
+  <tr><td>💵 DXY</td><td>98,99</td><td><span class="up">+0,19%</span></td></tr>
+  <tr><td>💱 USD/VND (VCB)</td><td>25.950 – 26.360</td><td>Tăng nhẹ 30–50 VND</td></tr>
+  <tr><td>🔩 Thép HRC (TQ xuất khẩu)</td><td>485–488 USD/tấn</td><td>Ổn định, có tín hiệu tạo đáy</td></tr>
+  <tr><td>🔩 Thép HRC (CFR VN)</td><td>507 USD/tấn CFR</td><td>Chững đà giảm</td></tr>
+</table>
+</div>
+
+<h3>📊 Đánh giá tác động đến danh mục</h3>
+<ul>
+  <li><strong>HPG (Thép):</strong> Giá HRC TQ ổn định ~485–488 USD/tấn, có tín hiệu tạo đáy → <span class="up">tích cực</span>. Giá HRC nội địa VN 13.800–14.300 VNĐ/kg chững đà giảm. NN mua ròng #1 toàn sàn chứng tỏ kỳ vọng vào FTSE Mid Cap và triển vọng Q3.</li>
+  <li><strong>SHB (Ngân hàng):</strong> Lãi suất huy động tăng nhẹ → biên lãi ròng (NIM) có thể bị ảnh hưởng. Tuy nhiên, FTSE Small Cap và tăng vốn thành công là <span class="up">catalyst tích cực</span>.</li>
+  <li><strong>MBS/SHS/VIX (Chứng khoán):</strong> VN-Index áp sát 1.800 điểm → thanh khoản tốt cho CTCK. Tuy nhiên áp lực chốt lời vùng 1.800 có thể ảnh hưởng ngắn hạn.</li>
+  <li><strong>KSB (Khoáng sản):</strong> Đầu tư công tăng tốc là động lực. Tuy nhiên giá cổ phiếu vẫn dưới stop-loss sâu.</li>
+  <li><strong>Châu Á giảm</strong> (KOSPI −3,12%) có thể tạo áp lực bán trong phiên sáng nay, đặc biệt nhóm công nghệ.</li>
+</ul>
+
+<!-- ===== MỤC 2b: VÀNG VIỆT NAM ===== -->
+<h2>2b. Vàng Việt Nam</h2>
+
+<div class="table-container">
+<table>
+  <tr>
+    <th>Loại vàng</th>
+    <th>Mua vào (tr/lượng)</th>
+    <th>Bán ra (tr/lượng)</th>
+    <th>Thay đổi</th>
+  </tr>
+  <tr>
+    <td><strong>SJC miếng 1L</strong></td>
+    <td>147,00</td>
+    <td>150,00</td>
+    <td><span class="up">+2,40 triệu</span></td>
+  </tr>
+  <tr>
+    <td>Nhẫn SJC 9999</td>
+    <td>146,50</td>
+    <td>149,50</td>
+    <td><span class="up">+2,40 triệu</span></td>
+  </tr>
+  <tr>
+    <td><strong>Nhẫn DOJI 9999</strong></td>
+    <td>149,00</td>
+    <td><strong>153,00 🔥</strong></td>
+    <td><span class="up">+3,50 triệu — ĐỈNH MỌI THỜI ĐẠI!</span></td>
+  </tr>
+  <tr>
+    <td>Nhẫn PNJ 999.9</td>
+    <td>146,80</td>
+    <td>150,00</td>
+    <td><span class="up">+2,50 triệu</span></td>
+  </tr>
+  <tr>
+    <td>Nhẫn BTMC (Rồng TL)</td>
+    <td>147,00</td>
+    <td>150,00</td>
+    <td><span class="up">+0,50 triệu</span></td>
+  </tr>
+  <tr>
+    <td>🌍 XAU/USD Spot</td>
+    <td colspan="2" style="text-align:center"><strong>4.685,26 USD/oz</strong></td>
+    <td><span class="up">+0,71%</span></td>
+  </tr>
+</table>
+</div>
+
+<div class="table-container">
+<table>
+  <tr>
+    <th>Loại</th>
+    <th>Vùng mua dự kiến</th>
+    <th>Vùng bán dự kiến</th>
+    <th>Ghi chú</th>
+  </tr>
+  <tr>
+    <td>SJC miếng 1L</td>
+    <td>137,0 – 138,5 tr</td>
+    <td>143,0 – 145,0 tr</td>
+    <td>Giá TT bán 150,0 tr — <span class="up">VƯỢT XA vùng bán +5,0 triệu!</span></td>
+  </tr>
+  <tr>
+    <td>Nhẫn trơn 9999</td>
+    <td>137,5 – 139,0 tr</td>
+    <td>144,0 – 145,5 tr</td>
+    <td>DOJI 153,0 tr — <span class="up">VƯỢT vùng bán +7,5 triệu! ĐỈNH MỌI THỜI ĐẠI</span></td>
+  </tr>
+</table>
+</div>
+
+<ul>
+  <li><strong>Xu hướng:</strong> Vàng thế giới tiếp tục tăng mạnh, giữ vững trên 4.600 USD/oz, hướng tới kháng cự 4.700–4.800 USD/oz.</li>
+  <li><strong>Động lực:</strong> DXY suy yếu (98,99), Mỹ mở rộng mua lại trái phiếu, lo ngại nợ công, dòng vốn ETF vàng toàn cầu tăng mạnh.</li>
+  <li><strong>Chênh lệch SJC–TG:</strong> ~1,2–1,9 triệu/lượng — <span class="up">thu hẹp đáng kể</span>, bình thường.</li>
+  <li><strong>Rủi ro:</strong> <span class="down">Rủi ro điều chỉnh kỹ thuật RẤT CAO</span> khi vàng tăng quá nhanh. DOJI nhẫn bán 153 triệu — chênh lệch giữa các thương hiệu lên tới 3,5 triệu/lượng.</li>
+  <li><strong>Sự kiện:</strong> PCE lõi Mỹ tháng 7, GDP Q2 Mỹ, Jackson Hole — có thể tạo biến động mạnh cho vàng tuần này.</li>
+</ul>
+
+<div class="warn">
+  <div class="warn-title">🚨 CẢNH BÁO VÀNG — GIÁ VƯỢT RẤT XA VÙNG BÁN CHIẾN LƯỢC</div>
+  <ul>
+    <li>SJC miếng bán ra <strong>150,00 triệu</strong> — VƯỢT XA vùng bán chiến lược (143–145 triệu) tới +5,0 triệu/lượng!</li>
+    <li>Nhẫn DOJI <strong>153,00 triệu</strong> — PHÁ ĐỈNH MỌI THỜI ĐẠI, vượt vùng bán +7,5 triệu!</li>
+    <li>Nếu đang nắm giữ vàng vật chất → cân nhắc chốt lời một phần. Rủi ro chỉnh kỹ thuật rất cao ở mức giá hiện tại.</li>
+  </ul>
+</div>
+
+<!-- ===== MỤC 3: GIÁ & P&L CHỨNG KHOÁN ===== -->
+<h2>3. Danh mục nắm giữ & Quản trị rủi ro</h2>
+
+<h3>💼 Bảng Danh mục nắm giữ <span class="tag tag-hold">ĐANG GIỮ</span></h3>
+<div class="table-container">
+<table>
+  <tr>
+    <th>Mã</th>
+    <th>SL</th>
+    <th>FTSE</th>
+    <th>Giá vốn</th>
+    <th>Giá TT</th>
+    <th>Giá trị TT</th>
+    <th>P&L</th>
+    <th>% P&L</th>
+    <th>LNST Q2 CĐ mẹ</th>
+  </tr>
+  <tr>
+    <td><strong>HPG</strong></td>
+    <td>10.700</td>
+    <td>Mid Cap</td>
+    <td>23,52</td>
+    <td>22,25</td>
+    <td>238.075.000</td>
+    <td class="down">−13.546.200</td>
+    <td class="down">−5,4%</td>
+    <td>6.424 tỷ <span class="up">(+51,0%)</span></td>
+  </tr>
+  <tr>
+    <td><strong>KSB</strong></td>
+    <td>25.000</td>
+    <td>—</td>
+    <td>15,39</td>
+    <td>13,80</td>
+    <td>345.000.000</td>
+    <td class="down">−39.625.000</td>
+    <td class="down">−10,3%</td>
+    <td>96,8 tỷ <span class="up">(+124,7%)</span></td>
+  </tr>
+  <tr>
+    <td><strong>MBS</strong></td>
+    <td>8.000</td>
+    <td>Micro Cap</td>
+    <td>17,81</td>
+    <td>17,90</td>
+    <td>143.200.000</td>
+    <td class="up">+712.000</td>
+    <td class="up">+0,5%</td>
+    <td>300,7 tỷ <span class="up">(+36,0%)</span></td>
+  </tr>
+  <tr>
+    <td><strong>SHB</strong></td>
+    <td>54.200</td>
+    <td>Small Cap</td>
+    <td>12,07</td>
+    <td>12,10</td>
+    <td>655.820.000</td>
+    <td class="up">+1.648.000</td>
+    <td class="up">+0,3%</td>
+    <td>3.562 tỷ <span class="down">(−2,3%)</span></td>
+  </tr>
+  <tr>
+    <td><strong>SHS</strong></td>
+    <td>10.000</td>
+    <td>—</td>
+    <td>18,91</td>
+    <td>15,60</td>
+    <td>156.000.000</td>
+    <td class="down">−33.060.000</td>
+    <td class="down">−17,5%</td>
+    <td>75,8 tỷ <span class="down">(−80,2%)</span></td>
+  </tr>
+  <tr style="background: #f1f5f9; font-weight: bold;">
+    <td>TỔNG</td>
+    <td colspan="4"></td>
+    <td>1.538.095.000</td>
+    <td class="down">−83.871.200</td>
+    <td class="down">−5,17%</td>
+    <td></td>
+  </tr>
+</table>
+</div>
+
+<div class="info">
+  📈 Danh mục hồi phục <strong>+10,88 triệu</strong> so với phiên 21/08 (từ −94,75tr lên −83,87tr). SHB CÓ LÃI trở lại (12.10 > giá vốn 12.07). MBS vẫn giữ lãi nhẹ. HPG tăng mạnh +2,53% nhờ NN gom ròng #1.
+</div>
+
+<h3>🛡️ Chiến lược bán & Quản trị rủi ro <span class="tag tag-hold">DANH MỤC NẮM GIỮ</span></h3>
+<div class="table-container">
+<table>
+  <tr>
+    <th>Mã</th>
+    <th>Cách Stop-loss</th>
+    <th>Giá TT</th>
+    <th>Giá vốn</th>
+    <th>LNST Q2</th>
+    <th>Stop-loss</th>
+    <th>Target</th>
+    <th>Biên kỳ vọng</th>
+    <th>Chiến lược</th>
+  </tr>
+  <tr>
+    <td><strong>HPG</strong></td>
+    <td><span class="up">+3,49%</span></td>
+    <td>22,25</td>
+    <td>23,52</td>
+    <td>6.424 tỷ <span class="up">(+51%)</span></td>
+    <td>21,50 <span class="down" style="font-size:12px">(−3,37%)</span></td>
+    <td>30,00 <span class="up" style="font-size:12px">(+34,83%)</span></td>
+    <td><span class="up">+34,8%</span></td>
+    <td>GIỮ. FTSE Mid Cap + NN gom #1. Hạ 1/3 nếu thủng 20.80.</td>
+  </tr>
+  <tr>
+    <td><strong>KSB</strong></td>
+    <td><span class="down">−4,83% ⚠️</span></td>
+    <td>13,80</td>
+    <td>15,39</td>
+    <td>96,8 tỷ <span class="up">(+125%)</span></td>
+    <td>14,50 <span class="up" style="font-size:12px">(+5,07%)</span></td>
+    <td>14,8–15,5</td>
+    <td><span class="up">+7,2–12,3%</span></td>
+    <td>🔴 ĐÃ VI PHẠM STOP. Canh hồi 14.0–14.5 bán 50%.</td>
+  </tr>
+  <tr>
+    <td><strong>MBS</strong></td>
+    <td><span class="up">+8,48%</span></td>
+    <td>17,90</td>
+    <td>17,81</td>
+    <td>300,7 tỷ <span class="up">(+36%)</span></td>
+    <td>16,50 <span class="down" style="font-size:12px">(−7,82%)</span></td>
+    <td>22,00 <span class="up" style="font-size:12px">(+22,91%)</span></td>
+    <td><span class="up">+22,9%</span></td>
+    <td>GIỮ. FTSE Micro Cap. Lãi nhẹ, cầm chắc tay.</td>
+  </tr>
+  <tr>
+    <td><strong>SHB</strong></td>
+    <td><span class="up">+5,22%</span></td>
+    <td>12,10</td>
+    <td>12,07</td>
+    <td>3.562 tỷ <span class="down">(−2,3%)</span></td>
+    <td>11,50 <span class="down" style="font-size:12px">(−4,96%)</span></td>
+    <td>16,50 <span class="up" style="font-size:12px">(+36,36%)</span></td>
+    <td><span class="up">+36,4%</span></td>
+    <td>GIỮ. FTSE Small Cap + CÓ LÃI. Hard stop 11.40.</td>
+  </tr>
+  <tr>
+    <td><strong>SHS</strong></td>
+    <td><span class="down">−8,24% 🚨</span></td>
+    <td>15,60</td>
+    <td>18,91</td>
+    <td>75,8 tỷ <span class="down">(−80,2%)</span></td>
+    <td>17,00 <span class="up" style="font-size:12px">(+8,97%)</span></td>
+    <td>22,00 <span class="up" style="font-size:12px">(+41,03%)</span></td>
+    <td><span class="up">+41,0%</span></td>
+    <td>🔴 ĐÃ VI PHẠM STOP. ƯU TIÊN SỐ 1 BÁN TỈA 30–50% khi hồi.</td>
+  </tr>
+</table>
+</div>
+
+<h3>👁️ Danh sách theo dõi & Chiến lược mua <span class="tag tag-watch">WATCHLIST</span> <span class="tag tag-strategy">CHIẾN LƯỢC</span></h3>
+<div class="table-container">
+<table>
+  <tr>
+    <th>Mã</th>
+    <th>Trạng thái</th>
+    <th>FTSE</th>
+    <th>Giá TT</th>
+    <th>LNST Q2</th>
+    <th>Stop</th>
+    <th>Target</th>
+    <th>Điều kiện kích hoạt mua</th>
+  </tr>
+  <tr>
+    <td><strong>VIX</strong></td>
+    <td><span class="tag tag-buy">FTSE ✓</span></td>
+    <td>Small Cap</td>
+    <td>13,80</td>
+    <td>75,9 tỷ <span class="down">(−94,0%)</span></td>
+    <td>15,00 <span class="up" style="font-size:12px">(+8,70%)</span></td>
+    <td>22,0–25,0 <span class="up" style="font-size:12px">(+59,4%)</span></td>
+    <td>
+      <details open><summary>🟢 LỌT FTSE — TIẾP TỤC TĂNG +2,22%</summary>
+        <ul>
+          <li>Tăng tiếp 13.50→13.80 phiên 24/08. NN gom ròng.</li>
+          <li>Dưới Stop 15.00 (−8,0%). LNST Q2 cực yếu.</li>
+          <li>Chờ xác nhận xu hướng tại 14.0–14.5.</li>
+        </ul>
+      </details>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>GEX</strong></td>
+    <td><span class="tag tag-buy">FTSE ✓</span></td>
+    <td>Small Cap</td>
+    <td>26,25</td>
+    <td>539 tỷ <span class="down">(−18,0%)</span></td>
+    <td>27,00 <span class="up" style="font-size:12px">(+2,86%)</span></td>
+    <td>36,0–40,0 <span class="up" style="font-size:12px">(+37,1%)</span></td>
+    <td>
+      <details open><summary>🟢 LỌT FTSE — GIỮ NỀN SÁT KHÁNG CỰ 27.0</summary>
+        <ul>
+          <li>Giữ vững 26.25. GEL đủ margin. Lọt FTSE Small Cap.</li>
+          <li>Nếu breakout 27.0 → kích hoạt mua.</li>
+          <li>Nếu bị từ chối → chờ 25.0–25.5.</li>
+        </ul>
+      </details>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>VND</strong></td>
+    <td><span class="tag tag-buy">FTSE ✓</span></td>
+    <td>Small Cap</td>
+    <td>16,80</td>
+    <td>882,6 tỷ <span class="up">(+139,5%)</span></td>
+    <td>15,50 <span class="down" style="font-size:12px">(−7,74%)</span></td>
+    <td>22,0–24,0 <span class="up" style="font-size:12px">(+31,0%)</span></td>
+    <td>
+      <details><summary>🟢 LNST BỨT PHÁ +139,5% — TÍCH LŨY</summary>
+        <ul>
+          <li>Điều chỉnh nhẹ 16.90→16.80. Lọt FTSE Small Cap.</li>
+          <li>Chờ hồi 16.0–16.5 hoặc breakout 17.5.</li>
+        </ul>
+      </details>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>CII</strong></td>
+    <td><span class="tag tag-watch">THEO DÕI</span></td>
+    <td>—</td>
+    <td>15,00</td>
+    <td>12,1 tỷ <span class="down">(−57,8%)</span></td>
+    <td>16,00 <span class="up" style="font-size:12px">(+6,67%)</span></td>
+    <td>19,0–22,0 <span class="up" style="font-size:12px">(+26,7%)</span></td>
+    <td>
+      <details><summary>🟢 HỒI PHỤC +2,04% — CHỐT QUYỀN TPCĐ 27/08</summary>
+        <ul>
+          <li>Hồi 14.70→15.00 phiên 24/08.</li>
+          <li>27/08 chốt quyền mua TPCĐ 6.720 tỷ.</li>
+          <li>Dưới Stop 16.00 sâu. Theo dõi.</li>
+        </ul>
+      </details>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>FPT</strong></td>
+    <td><span class="tag tag-buy">FTSE ✓</span></td>
+    <td>Small Cap</td>
+    <td>71,40</td>
+    <td>2.568 tỷ <span class="up">(+13,7%)</span></td>
+    <td>60,00 <span class="down" style="font-size:12px">(−15,97%)</span></td>
+    <td>90,0–95,0 <span class="up" style="font-size:12px">(+26,1%)</span></td>
+    <td>
+      <details><summary>🟢 LỌT FTSE — ĐIỀU CHỈNH NHẸ</summary>
+        <ul>
+          <li>Giảm nhẹ 72.00→71.40 (−0,83%). NN chốt lời nhẹ.</li>
+          <li>Cách Stop 60.00 (+19%). Canh chiết khấu 66–68.</li>
+        </ul>
+      </details>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>MSN</strong></td>
+    <td><span class="tag tag-buy">FTSE ✓</span></td>
+    <td>Small Cap</td>
+    <td>70,00</td>
+    <td>3.125 tỷ <span class="up">(+202,8%)</span></td>
+    <td>62,00 <span class="down" style="font-size:12px">(−11,43%)</span></td>
+    <td>85,0–95,0 <span class="up" style="font-size:12px">(+21,4%)</span></td>
+    <td>
+      <details><summary>🟢 LỌT FTSE — NN GOM RÒNG MẠNH +202,8%</summary>
+        <ul>
+          <li>Tăng nhẹ 69.80→70.00. NN gom ròng mạnh.</li>
+          <li>LNST kỷ lục. Mục tiêu LNST cả năm 10.000–11.500 tỷ.</li>
+          <li>Theo dõi mua gom 67–69.</li>
+        </ul>
+      </details>
+    </td>
+  </tr>
+</table>
+</div>
+
+<!-- ===== MỤC 4: CẢNH BÁO ===== -->
+<h2>4. Cảnh báo</h2>
+
+<div class="warn">
+  <div class="warn-title">🚨 SHS — ĐÃ VI PHẠM STOP-LOSS SÂU (−8,24%)</div>
+  <ul>
+    <li>Giá TT <strong>15,60</strong> dưới Stop-loss 17,00 tới <strong>−8,24%</strong>. Lỗ nặng −33,06 triệu (−17,5%).</li>
+    <li>LNST Q2 CĐ mẹ chỉ 75,8 tỷ (<span class="down">−80,2% YoY</span>) — cơ bản cực yếu.</li>
+    <li>Giảm tiếp từ 15.90→15.60 phiên 24/08 trong khi thị trường tăng mạnh → <strong>yếu hơn thị trường rõ rệt</strong>.</li>
+    <li>⚡ <strong>ƯU TIÊN SỐ 1:</strong> Bán tỉa 30–50% ngay khi có nhịp hồi về 15,5–16,5 để hạ margin.</li>
+  </ul>
+</div>
+
+<div class="warn">
+  <div class="warn-title">🚨 KSB — ĐÃ VI PHẠM STOP-LOSS (−4,83%)</div>
+  <ul>
+    <li>Giá TT <strong>13,80</strong> dưới Stop-loss 14,50 tới <strong>−4,83%</strong>. Lỗ −39,63 triệu (−10,3%).</li>
+    <li>LNST Q2 tốt (+124,7% YoY), TGĐ mua 1M CP là <span class="up">tín hiệu nội bộ tích cực</span>.</li>
+    <li>Tuy nhiên không có FTSE catalyst, đi ngang trong khi thị trường tăng.</li>
+    <li>⚡ Canh nhịp hồi <strong>14,0–14,5</strong> bán 50% để hạ rủi ro margin.</li>
+  </ul>
+</div>
+
+<div class="info">
+  <strong>🟢 HPG — AN TOÀN — Vượt Stop-loss +3,49%</strong>
+  <ul>
+    <li>Giá TT 22,25 > Stop 21,50 (+3,49%). NN mua ròng #1 toàn sàn (+106 tỷ).</li>
+    <li>FTSE Mid Cap, LNST Q2 +51,0% YoY — <strong>trụ chính của danh mục</strong>.</li>
+    <li>BSC dự phóng Q3 LNST 6.000–6.500 tỷ. Giá mục tiêu CTCK: 32.700–35.900đ (+47–61%).</li>
+  </ul>
+</div>
+
+<div class="info">
+  <strong>🟢 SHB — CÓ LÃI TRỞ LẠI — Giá TT 12,10 > Giá vốn 12,07</strong>
+  <ul>
+    <li>Vượt giá vốn (+0,25%). FTSE Small Cap. Cách Stop 11,50 (+5,22%).</li>
+    <li>Sẽ chia cổ tức 16% (10% CP + 6% tiền mặt). NN gom ròng.</li>
+    <li>Hard stop 11,40 giữ.</li>
+  </ul>
+</div>
+
+<div class="info">
+  <strong>🟢 MBS — CÒN LÃI NHẸ +0,5%</strong>
+  <ul>
+    <li>Giá TT 17,90 > Giá vốn 17,81. Cách Stop 16,50 (+8,48%).</li>
+    <li>FTSE Micro Cap. LNST Q2 +36,0% YoY. Cầm chắc tay.</li>
+  </ul>
+</div>
+
+<div class="warn">
+  <div class="warn-title">🥇 VÀNG — GIÁ VƯỢT RẤT XA VÙNG BÁN CHIẾN LƯỢC</div>
+  <ul>
+    <li>SJC miếng bán ra 150,00 triệu — VƯỢT vùng bán (143–145) tới <strong>+5,0 triệu/lượng</strong>!</li>
+    <li>Nhẫn DOJI 153,00 triệu — PHÁ ĐỈNH MỌI THỜI ĐẠI, vượt vùng bán <strong>+7,5 triệu</strong>!</li>
+    <li>XAU/USD 4.685 USD/oz — đang tăng tốc, hướng 4.700–4.800 USD/oz.</li>
+    <li>Rủi ro chỉnh kỹ thuật <span class="down">RẤT CAO</span> — cân nhắc chốt lời nếu đang giữ vàng vật chất.</li>
+  </ul>
+</div>
+
+<div class="info">
+  <strong>📅 SỰ KIỆN SẮP TỚI QUAN TRỌNG</strong>
+  <ul>
+    <li><strong>27/08:</strong> CII chốt quyền mua trái phiếu chuyển đổi 6.720 tỷ.</li>
+    <li><strong>18/09:</strong> FTSE đợt giải ngân 1 (10% tổng vốn ~78.900 tỷ).</li>
+    <li><strong>21/09:</strong> FTSE nâng hạng chính thức — hiệu lực danh mục.</li>
+    <li><strong>Tuần này:</strong> PCE lõi Mỹ tháng 7, GDP Q2 Mỹ, Jackson Hole.</li>
+  </ul>
+</div>
+
+<!-- ===== MỤC 5: TÓM TẮT ===== -->
+<h2>5. Tóm tắt & Hành động</h2>
+
+<div class="summary">
+  <span class="summary-title">📋 3 ĐIỂM CHÍNH HÔM NAY</span>
+  <ol>
+    <li><strong>VN-Index tiệm cận 1.800 điểm</strong> — Tăng 2 phiên liên tiếp (+1,95% + 1,17%), NN mua ròng liên tiếp (+188 tỷ phiên 24/08). Thị trường đang trong sóng FTSE nâng hạng. Tuy nhiên, vùng 1.800 là kháng cự tâm lý mạnh, có thể xảy ra chốt lời ngắn hạn. Châu Á giảm (KOSPI −3,12%) tạo áp lực.</li>
+    <li><strong>Danh mục hồi phục +10,88 triệu — SHB có lãi, HPG hồi mạnh</strong>. P&L cải thiện từ −94,75tr xuống −83,87tr (−5,17%). SHB (12,10) vượt giá vốn. HPG (+2,53%) nhờ NN gom #1 toàn sàn. Tuy nhiên SHS tiếp tục yếu (−1,89%) và KSB đi ngang — hai "gánh nặng" margin cần xử lý.</li>
+    <li><strong>Vàng phá đỉnh mọi thời đại</strong> — XAU/USD 4.685 USD/oz. SJC 150 triệu, DOJI nhẫn 153 triệu (lịch sử!). Vượt rất xa vùng bán chiến lược. Rủi ro chỉnh kỹ thuật RẤT CAO nhưng xu hướng tăng trung hạn vẫn mạnh nhờ DXY yếu và dòng vốn ETF.</li>
+  </ol>
+
+  <strong>🎯 HÀNH ĐỘNG ĐỀ XUẤT:</strong>
+  <ul>
+    <li><strong>SHS:</strong> ƯU TIÊN SỐ 1 — bán tỉa 30–50% (3.000–5.000 cp) ngay khi có nhịp hồi vùng 15,5–16,5 để giảm gánh nặng margin.
+      <ul>
+        <li>LNST Q2 −80,2% YoY, không có FTSE catalyst, yếu hơn thị trường rõ rệt.</li>
+        <li>Tiền thu về ≈ 47–83 triệu → cải thiện đáng kể tỷ trọng margin.</li>
+      </ul>
+    </li>
+    <li><strong>KSB:</strong> Canh nhịp hồi 14,0–14,5 bán 50% (12.500 cp). Cơ bản tốt nhưng giá dưới stop sâu, không có FTSE catalyst.
+      <ul>
+        <li>Tiền thu về ≈ 175–181 triệu nếu thực hiện → giảm mạnh margin.</li>
+      </ul>
+    </li>
+    <li><strong>HPG/SHB/MBS:</strong> GIỮ VỮNG đón sóng FTSE (hiệu lực 21/09). HPG Mid Cap + NN gom ròng #1 là trụ chính. SHB & MBS đã có lãi.
+      <ul>
+        <li>HPG: giữ stop 21,50, cắt 1/3 nếu thủng 20,80 dứt khoát.</li>
+        <li>SHB: hard stop 11,40.</li>
+        <li>MBS: stop 16,50.</li>
+      </ul>
+    </li>
+    <li><strong>TUYỆT ĐỐI KHÔNG mua thêm bằng margin</strong> cho đến khi hạ tỷ trọng SHS/KSB.</li>
+    <li><strong>Vàng:</strong> Nếu đang giữ vàng vật chất → cân nhắc chốt lời một phần ở mức giá lịch sử hiện tại. Rủi ro chỉnh kỹ thuật rất cao.</li>
+  </ul>
+</div>
+
+</body>
+</html>

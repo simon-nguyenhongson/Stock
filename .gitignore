@@ -1,0 +1,12 @@
+# Windows
+Thumbs.db
+desktop.ini
+*.lnk
+
+# Claude Code — cấu hình/quyền cục bộ của từng máy, có thể chứa token
+.claude/settings.local.json
+.claude/*.local.json
+
+# File tạm
+~$*
+*.tmp

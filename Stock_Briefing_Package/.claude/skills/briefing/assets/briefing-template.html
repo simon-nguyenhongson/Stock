@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Briefing sáng — {{NGAY}}</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-main: #f8fafc;
+  --card-bg: #ffffff;
+  --card-border: rgba(226, 232, 240, 0.8);
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --accent: #2563eb;
+  --success: #059669;
+  --danger: #dc2626;
+  --warning: #d97706;
+  --header-bg: #f1f5f9;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 5px; color: #0f172a; }
+.gradient-text { background: linear-gradient(135deg, #2563eb, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+h2 { font-size: 1.5rem; font-weight: 600; margin-top: 45px; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; color: #0f172a; }
+h2::before { content: ''; display: block; width: 4px; height: 24px; background: linear-gradient(to bottom, #3b82f6, #8b5cf6); border-radius: 4px; }
+
+h3 { color: #334155; font-weight: 600; font-size: 1.15rem; margin-top: 30px; margin-bottom: 12px; }
+
+.nav-bar { display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 10px; font-size: 0.95rem; color: var(--text-muted); }
+.nav-bar span { background: #f8fafc; padding: 6px 14px; border-radius: 20px; border: 1px solid #e2e8f0; font-weight: 500; }
+.nav-bar strong { color: #0f172a; font-weight: 700; }
+
+.disclaimer { font-size: 12.5px; color: #64748b; margin: 20px 0 40px; padding: 12px 16px; background: #f8fafc; border-radius: 8px; border-left: 3px solid #cbd5e1; }
+
+.table-container { border: 1px solid var(--card-border); border-radius: 12px; overflow: hidden; margin: 15px 0 25px; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th { background: #f8fafc; color: #475569; font-weight: 600; padding: 16px 18px; text-align: left; border-bottom: 1px solid var(--card-border); }
+td { padding: 14px 18px; border-bottom: 1px solid var(--card-border); color: #334155; }
+tr:last-child td { border-bottom: none; }
+
+.up { color: var(--success); font-weight: 600; }
+.down { color: var(--danger); font-weight: 600; }
+
+.warn { background: #fef2f2; border: 1px solid #fecaca; border-radius: 10px; padding: 16px 20px; margin: 15px 0; }
+.warn-title { color: #dc2626; font-weight: 700; font-size: 1rem; margin-bottom: 8px; }
+
+.info { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 10px; padding: 16px 20px; margin: 15px 0; }
+
+.summary { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px; padding: 20px 24px; margin: 15px 0; }
+.summary-title { color: #059669; font-size: 1.1em; font-weight: 700; display: block; margin-bottom: 8px; }
+
+ul, ol { margin: 10px 0; padding-left: 24px; }
+li { margin-bottom: 8px; }
+
+/* Badges */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+}
+.tag-hold     { background: rgba(59, 130, 246, 0.10); color: #2563eb; border: 1px solid rgba(59, 130, 246, 0.25); }
+.tag-watch    { background: rgba(245, 158, 11, 0.10); color: #d97706; border: 1px solid rgba(245, 158, 11, 0.25); }
+.tag-strategy { background: rgba(168, 85, 247, 0.10); color: #9333ea; border: 1px solid rgba(168, 85, 247, 0.25); }
+.tag-gold     { background: rgba(234, 179, 8, 0.10); color: #ca8a04; border: 1px solid rgba(234, 179, 8, 0.25); }
+.tag-buy      { background: rgba(16, 185, 129, 0.10); color: #059669; border: 1px solid rgba(16, 185, 129, 0.25); }
+
+/* Dropdown Accordion */
+details {
+  background: #ffffff;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  margin: 6px 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+details[open] {
+  background: #ffffff;
+  border-color: #bfdbfe;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+summary {
+  cursor: pointer;
+  font-weight: 500;
+  color: #1e293b;
+  font-size: 13.5px;
+  padding: 12px 16px;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.2s;
+  border-radius: 8px;
+}
+summary::-webkit-details-marker { display: none; }
+summary::after {
+  content: '▼';
+  font-size: 10px;
+  color: var(--text-muted);
+  transition: transform 0.3s;
+}
+details[open] summary::after {
+  transform: rotate(180deg);
+  color: var(--accent);
+}
+summary:hover { background: #f1f5f9; }
+details ul {
+  margin: 0;
+  padding: 12px 16px 16px 36px;
+  background: #ffffff;
+  border-top: 1px solid var(--card-border);
+  font-size: 13.5px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+details li { margin-bottom: 8px; color: #475569; }
+details li strong { color: #0f172a; }
+</style>
+</head>
+<body>
+
+<h1>📋 <span class="gradient-text">Briefing sáng {{NGAY}}</span></h1>
+<div class="nav-bar">
+  <span>NAV: <strong>{{NAV}}</strong></span>
+  <span>Tiền mặt: <strong>{{CASH}}</strong></span>
+  <span>P&amp;L: <strong>{{PNL}}</strong></span>
+  <span>Cập nhật: <strong>{{THOI_GIAN}}</strong></span>
+</div>
+<div class="disclaimer">
+  Báo cáo tự động phục vụ mục đích tham khảo cá nhân, không phải khuyến nghị đầu tư. Dữ liệu tổng hợp từ nguồn công khai
+  ({{NGUON}}) tại thời điểm {{THOI_GIAN}} và có thể sai lệch so với sàn. Người dùng tự chịu trách nhiệm cho quyết định giao dịch.
+</div>
+
+<h2>1. Tin tức nổi bật</h2>
+<h3>Vĩ mô thế giới</h3>
+<ul><li>…</li></ul>
+<h3>Việt Nam</h3>
+<ul><li>…</li></ul>
+<h3>Liên quan trực tiếp danh mục</h3>
+<ul><li>…</li></ul>
+
+<h2>2. Thế giới &amp; hàng hoá</h2>
+<div class="table-container">
+<table>
+  <thead><tr><th>Chỉ số / Hàng hoá</th><th>Giá</th><th>Thay đổi</th><th>Ghi chú</th></tr></thead>
+  <tbody><tr><td>…</td><td>…</td><td><span class="up">…</span></td><td>…</td></tr></tbody>
+</table>
+</div>
+<h3>Đánh giá tác động tới danh mục</h3>
+<ul><li>…</li></ul>
+
+<h2>2b. Vàng Việt Nam</h2>
+<div class="table-container">
+<table>
+  <thead><tr><th>Loại vàng</th><th>Mua vào</th><th>Bán ra</th><th>Thay đổi</th></tr></thead>
+  <tbody><tr><td>…</td><td>…</td><td>…</td><td><span class="up">…</span></td></tr></tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+  <thead><tr><th>Loại</th><th>Vùng mua</th><th>Vùng bán</th><th>Ghi chú</th></tr></thead>
+  <tbody><tr><td>…</td><td>…</td><td>…</td><td>…</td></tr></tbody>
+</table>
+</div>
+<ul><li>Xu hướng &amp; rủi ro: …</li></ul>
+
+<h2>3. Giá thị trường &amp; P&amp;L</h2>
+<h3>Danh mục đang nắm giữ</h3>
+<div class="table-container"><table><!-- Mã | SL | Giá vốn | Giá TT | P&L | LNST Qx (%YoY) | Ngành | Ghi chú --></table></div>
+<h3>Chiến lược bán &amp; Quản trị rủi ro</h3>
+<div class="table-container"><table><!-- Mã | Cách stop-loss | Giá TT | Giá vốn | LNST Qx | Stop-loss | Target | Biên kỳ vọng | Chiến lược --></table></div>
+<h3>Danh sách theo dõi &amp; Chiến lược mua</h3>
+<div class="table-container"><table><!-- Mã | Trạng thái | FTSE | Giá TT | LNST Qx | Stop | Target | Điều kiện kích hoạt mua (details) --></table></div>
+
+<h2>4. Cảnh báo</h2>
+<div class="warn"><div class="warn-title">…</div><ul><li>…</li></ul></div>
+<div class="info"><ul><li>…</li></ul></div>
+
+<h2>5. Tóm tắt &amp; hành động</h2>
+<div class="summary">
+  <div class="summary-title">3 điểm chính</div>
+  <ol><li>…</li><li>…</li><li>…</li></ol>
+  <div class="summary-title">Hành động đề xuất hôm nay</div>
+  <ul><li>…<ul><li>…</li></ul></li></ul>
+</div>
+
+</body>
+</html>
