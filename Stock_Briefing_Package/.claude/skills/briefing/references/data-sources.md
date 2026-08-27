@@ -1,5 +1,16 @@
 # Thu thập & kiểm chứng dữ liệu
 
+## MCP môi giới TCBS (ưu tiên cao nhất)
+
+Trước khi tra web, chạy `ToolSearch` query `+tcbs` để xem MCP `tcbs` có tool nào khả dụng.
+
+- Có tool đọc **vị thế / số dư / sức mua** → dùng làm nguồn cho danh mục nắm giữ, số lượng, giá vốn, tiền mặt. Đây là dữ liệu tài khoản thật, thắng `DANH_MUC.md` khi lệch.
+- Có tool đọc **giá** → dùng làm nguồn giá thị trường, thay cho 24HMoney.
+- Không có tool tương ứng, hoặc MCP chưa đăng nhập → dùng web theo các mục dưới, và ghi rõ trong báo cáo là chưa dùng được TCBS.
+- **Chỉ đọc.** Không gọi tool đặt/sửa/hủy lệnh hay chuyển tiền trong bất kỳ trường hợp nào.
+
+Khi dùng MCP, vẫn **đối chiếu chéo** ít nhất giá của các mã đang nắm giữ với một nguồn web để phát hiện lỗi dữ liệu; lệch bất thường thì báo cả hai số thay vì chọn bừa.
+
 ## Giá thị trường cổ phiếu
 
 Lấy giá cho **tất cả** mã trong danh mục + chiến lược mua + watchlist.
@@ -26,7 +37,7 @@ Hiển thị gộp trong một ô: `xxx tỷ (+xx%)` — % dương dùng class `
 
 - SJC miếng 1 lượng: mua vào + bán ra.
 - Nhẫn trơn 9999: SJC, DOJI, PNJ, Bảo Tín Minh Châu.
-- XAU/USD spot + xu hướng đêm qua và lý do.
+- XAU/USD spot + xu hướng gần nhất và lý do.
 - Chênh lệch SJC vs thế giới quy đổi (triệu VND/lượng). Chênh > 15 triệu/lượng → đưa vào `div.warn`.
 
 Vùng mua/bán dự kiến suy ra từ: xu hướng XAU/USD, hỗ trợ/kháng cự kỹ thuật, mức chênh SJC–thế giới, tâm lý thị trường. Nêu rõ rủi ro (chênh lệch quá lớn, chính sách Fed, địa chính trị).

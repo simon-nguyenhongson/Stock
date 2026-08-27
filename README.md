@@ -1,6 +1,8 @@
-# Stock — Skill briefing sáng chứng khoán & vàng Việt Nam
+# Stock — Skill briefing chứng khoán & vàng Việt Nam
 
 Skill `/briefing` cho [Claude Code](https://claude.com/claude-code), viết theo chuẩn **Agent Skills** của Anthropic: đọc danh mục từ `DANH_MUC.md`, thu thập tin tức + giá thị trường + giá vàng, lấy BCTC quý gần nhất từ 24HMoney, tính P&L và khoảng cách stop-loss/target, rồi sinh báo cáo `briefing.html`.
+
+Đây là skill duy nhất của repo và chạy được ở bất kỳ thời điểm nào trong ngày — trước phiên, trong phiên hay sau phiên; báo cáo tự ghi rõ giá đang dùng là giá đóng cửa hay giá trong phiên.
 
 ## Cài đặt
 

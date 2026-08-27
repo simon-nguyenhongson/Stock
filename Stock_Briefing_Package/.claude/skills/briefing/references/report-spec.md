@@ -2,6 +2,29 @@
 
 Xuất phát từ `assets/briefing-template.html`. Giữ nguyên CSS trong template — không đổi màu, font, layout.
 
+## Quy tắc độ dài — BẮT BUỘC, ưu tiên cao nhất
+
+Báo cáo là **bảng tra cứu nhanh, không phải bài phân tích**. Người dùng cần quét mắt ra quyết định trong 30 giây.
+
+| Thành phần | Giới hạn cứng |
+|---|---|
+| Mỗi `<li>` | **1 dòng, ≤ 20 từ.** Dài hơn → chuyển thành bảng hoặc cắt bỏ |
+| Mỗi khối `<h3>` / `div.warn` / `div.info` | **≤ 4 bullet** |
+| Cột `Ghi chú` / `Chiến lược` trong bảng | **≤ 20 từ**, dạng nhãn + số (`Vi phạm stop −6.6%. KL mỏng 236k → chia nhỏ lệnh.`) |
+| Accordion `<details>` | **≤ 3 `<li>`**, mỗi cái 1 dòng |
+| `div.summary` — 3 điểm chính | **1 dòng mỗi điểm** |
+| `div.summary` — hành động | **Dạng bảng** `Mã \| Việc \| Ngưỡng`, không phải `ul` lồng |
+| Mục "không tra được" | **Một dòng liệt kê phẩy**, không phải danh sách |
+
+Quy tắc viết:
+
+- **Số liệu chỉ nằm trong bảng.** Không nhắc lại số đã có trong bảng ở phần diễn giải.
+- **Một dữ kiện xuất hiện đúng một lần** trong toàn báo cáo. Không lặp giữa Mục 1 / Mục 4 / Mục 5.
+- **Không viết lời dẫn, chuyển ý, hay giải thích bối cảnh.** Vào thẳng dữ kiện.
+- **Gộp "đánh giá tác động" thành một cột `Tác động` trong bảng** thay vì viết thành `ul` riêng.
+- **Cắt, không rút gọn.** Thông tin không đổi được quyết định hôm nay thì bỏ hẳn.
+- Đính chính bản trước: **1 dòng mỗi lỗi**, dạng `Mục: số cũ → số đúng. Hệ quả.`
+
 ## Cấu trúc 7 mục
 
 1. **Header** — `<h1>📋 <span class="gradient-text">…</span></h1>`, `div.nav-bar` (NAV, tiền mặt, P&L, ngày/giờ cập nhật), `div.disclaimer`.
@@ -35,6 +58,7 @@ Xuất phát từ `assets/briefing-template.html`. Giữ nguyên CSS trong templ
 
 - Cột `LNST Qx`: gộp `xxx tỷ (+xx%)` trong một ô; tiêu đề ghi đúng quý thực tế.
 - Cột `Stop` / `Target`: giá trị số kèm % so với Giá TT — `xx.xx <span class="up" style="font-size:12px">(+xx.xx%)</span>`; `.up` nếu cao hơn Giá TT, `.down` nếu thấp hơn.
+- **Không bao giờ để `n/a` ở cột `Stop` / `Target`.** Mã nào thiếu thì tự lập ngưỡng theo mục "Khi dữ liệu thiếu" trong `SKILL.md`, ghi vào `DANH_MUC.md`, rồi mới điền vào bảng — kèm chú thích ngắn là ngưỡng do skill tự lập.
 - Cột `Điều kiện kích hoạt mua` đặt **cuối cùng**, dùng accordion:
   ```html
   <details open><summary>Tiêu đề</summary><ul><li>Tranche 1 …</li></ul></details>

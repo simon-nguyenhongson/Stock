@@ -1,7 +1,8 @@
-# 📈 Briefing sáng — Chứng khoán & Vàng Việt Nam
+# 📈 Briefing — Chứng khoán & Vàng Việt Nam
 
 > Skill `/briefing` cho Claude Code, viết theo chuẩn **Agent Skills** của Anthropic.
 > Kèm bản hướng dẫn dùng cho Claude.ai Projects, Antigravity, Cursor và Windsurf.
+> Chạy được ở bất kỳ thời điểm nào trong ngày — trước phiên, trong phiên hay sau phiên.
 
 ---
 
@@ -23,7 +24,7 @@ Muốn dùng được ở mọi thư mục thì copy `.claude/skills/briefing/` 
 
 1. Copy nội dung trong `PROJECT_INSTRUCTIONS_CLAUDE_AI.md` vào **Project Instructions**.
 2. Tải `DANH_MUC.md` vào **Project Knowledge**.
-3. Chat: `/briefing` hoặc "chạy briefing sáng cho danh mục của tôi".
+3. Chat: `/briefing` hoặc "chạy briefing cho danh mục của tôi".
 
 ### Antigravity / Cursor / Windsurf
 
@@ -44,9 +45,7 @@ CLAUDE.md                         # Bối cảnh project cho Claude Code
 PROJECT_INSTRUCTIONS_CLAUDE_AI.md # Prompt dán vào Claude.ai Projects
 DANH_MUC.md                       # Dữ liệu danh mục mẫu
 DANH_MUC_TEMPLATE.md              # Bản mẫu trống
-bang_C2.md                        # Bảng đồng bộ ngưỡng trigger
 briefing.html                     # Ví dụ báo cáo đã sinh
-chien_luoc_ve_bo.html             # Dashboard quản trị rủi ro
 open_briefing.bat                 # Mở báo cáo bằng trình duyệt mặc định
 launch_briefing.bat               # Mở báo cáo qua Task Scheduler
 HUONG_DAN_CAI_DAT_VA_SU_DUNG.md   # Hướng dẫn chi tiết

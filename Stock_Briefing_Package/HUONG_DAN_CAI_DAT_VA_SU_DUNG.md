@@ -1,6 +1,8 @@
 # 📦 Hướng dẫn cài đặt & sử dụng skill `/briefing`
 
-> Skill briefing sáng cho danh mục chứng khoán & vàng Việt Nam, viết theo chuẩn **Agent Skills** của Anthropic (`SKILL.md` + `references/` + `assets/`, progressive disclosure).
+> Skill briefing cho danh mục chứng khoán & vàng Việt Nam, viết theo chuẩn **Agent Skills** của Anthropic (`SKILL.md` + `references/` + `assets/`, progressive disclosure).
+>
+> Đây là skill duy nhất của gói và chạy được ở bất kỳ thời điểm nào trong ngày — trước phiên, trong phiên hay sau phiên.
 
 ---
 
@@ -22,8 +24,7 @@ Stock/
 ├── DANH_MUC.md                               # NGUỒN DỮ LIỆU DUY NHẤT
 ├── DANH_MUC_TEMPLATE.md                      # Bản mẫu trống
 ├── briefing.html                             # Báo cáo sinh ra mỗi lần chạy
-├── open_briefing.bat / launch_briefing.bat   # Mở báo cáo trên Windows
-└── bang_C2.md, chien_luoc_ve_bo.html         # Bảng trigger & dashboard rủi ro
+└── open_briefing.bat / launch_briefing.bat   # Mở báo cáo trên Windows
 ```
 
 Nguyên tắc: **chỉ tồn tại một bản `SKILL.md`.** Không nhân bản sang `.agents/` hay `~/.claude/skills/` cùng lúc, vì hai bản sẽ lệch nhau sau vài lần sửa.
@@ -53,7 +54,7 @@ Nếu cài cả hai, bản project sẽ được ưu tiên — nên chọn một
 1. Tạo Project, ví dụ *Stock Assistant*.
 2. **Project Knowledge**: tải `DANH_MUC.md`.
 3. **Project Instructions**: dán toàn bộ khối trong `PROJECT_INSTRUCTIONS_CLAUDE_AI.md`.
-4. Chat `/briefing` hoặc "chạy briefing sáng cho danh mục của tôi".
+4. Chat `/briefing` hoặc "chạy briefing cho danh mục của tôi".
 
 ### Antigravity / Gemini Code Assist
 
