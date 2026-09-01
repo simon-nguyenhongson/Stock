@@ -94,7 +94,7 @@ Ngắn gọn: lấy giá khớp lệnh mới nhất (hoặc giá đóng cửa ph
 
    - Thư mục không phải git repo, hoặc `git remote -v` rỗng → **bỏ qua bước này**, ghi một dòng trong phần báo lại. Không tự `git init`, không tự thêm remote.
    - Không có gì thay đổi (`git status` sạch) → bỏ qua, không tạo commit rỗng.
-   - Push bị từ chối vì remote đi trước → `git pull --rebase origin HEAD` rồi push lại một lần.
+   - Push bị từ chối vì remote đi trước → `git pull --rebase origin "$(git branch --show-current)"` rồi push lại một lần. Dùng đúng tên nhánh đang làm việc, **không dùng `origin HEAD`** — phía remote `HEAD` trỏ về nhánh mặc định của repo, nên nếu đang đứng ở nhánh khác thì sẽ rebase lên sai gốc.
    - **Tuyệt đối không `git push --force`, không `git reset --hard`, không xoá hay sửa commit đã có.** Push thất bại hai lần → dừng, giữ nguyên commit ở local, báo rõ lý do cho người dùng để họ xử lý tay.
    - Chỉ commit trên nhánh đang làm việc. Không tự tạo nhánh, không tự merge.
 6. Báo lại cho người dùng đường dẫn file + 3 điểm chính, kèm danh sách dữ liệu nào không tra được (nếu có), mọi Stop-loss/Target vừa tự lập, và **mã commit vừa push** (hoặc lý do không push được).
