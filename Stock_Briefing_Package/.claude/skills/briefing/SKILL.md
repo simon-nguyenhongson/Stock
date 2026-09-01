@@ -69,7 +69,7 @@ Ngắn gọn: lấy giá khớp lệnh mới nhất (hoặc giá đóng cửa ph
 - Mọi mã đều phải có đủ Stop-loss/Target trước khi tới bước này — thiếu thì quay lại tự lập theo mục "Khi dữ liệu thiếu". Không có mã nào được để trống ô rủi ro trong báo cáo.
 - Tóm tắt 1 trang: 3 điểm chính + hành động đề xuất cho phiên gần nhất kế tiếp.
 
-### Bước 6 — Xuất báo cáo & trình cho người dùng
+### Bước 6 — Xuất báo cáo, đẩy lên git & trình cho người dùng
 
 1. Sinh `briefing.html` tại thư mục làm việc (ghi đè file cũ để đường dẫn cố định). Bắt đầu từ [assets/briefing-template.html](assets/briefing-template.html) — template đã chứa sẵn đúng CSS design system, **không tự đổi màu/font/layout**. Cấu trúc 7 mục và quy tắc bảng: [references/report-spec.md](references/report-spec.md).
 2. Cập nhật `DANH_MUC.md`: giá TT mới, mốc thời gian cập nhật, **mọi Stop-loss/Target vừa tự lập theo mục "Khi dữ liệu thiếu"**, và thêm một dòng vào bảng nhật ký kiểm tra trigger (nếu file có bảng này).
@@ -82,7 +82,22 @@ Ngắn gọn: lấy giá khớp lệnh mới nhất (hoặc giá đóng cửa ph
    start "" "%SCRIPT_DIR%briefing.html"
    ```
 4. Mở báo cáo: `powershell -Command "Start-Process '<đường dẫn tuyệt đối>\briefing.html'"` (mở bằng trình duyệt mặc định — không phụ thuộc Chrome đã cài).
-5. Báo lại cho người dùng đường dẫn file + 3 điểm chính, kèm danh sách dữ liệu nào không tra được (nếu có) và mọi Stop-loss/Target vừa tự lập.
+5. **Commit & push toàn bộ kết quả lên git — bắt buộc, không hỏi lại.** Mỗi lần chạy xong đều đẩy lên remote để báo cáo không bị mất và để routine chạy trên máy khác luôn thấy bản mới nhất.
+
+   ```bash
+   git add -A
+   git commit -m "Briefing DD/MM/YYYY HH:MM — <1 dòng ≤12 từ về diễn biến chính>"
+   git push origin HEAD
+   ```
+
+   Quy tắc an toàn khi push:
+
+   - Thư mục không phải git repo, hoặc `git remote -v` rỗng → **bỏ qua bước này**, ghi một dòng trong phần báo lại. Không tự `git init`, không tự thêm remote.
+   - Không có gì thay đổi (`git status` sạch) → bỏ qua, không tạo commit rỗng.
+   - Push bị từ chối vì remote đi trước → `git pull --rebase origin HEAD` rồi push lại một lần.
+   - **Tuyệt đối không `git push --force`, không `git reset --hard`, không xoá hay sửa commit đã có.** Push thất bại hai lần → dừng, giữ nguyên commit ở local, báo rõ lý do cho người dùng để họ xử lý tay.
+   - Chỉ commit trên nhánh đang làm việc. Không tự tạo nhánh, không tự merge.
+6. Báo lại cho người dùng đường dẫn file + 3 điểm chính, kèm danh sách dữ liệu nào không tra được (nếu có), mọi Stop-loss/Target vừa tự lập, và **mã commit vừa push** (hoặc lý do không push được).
 
 ## Khi dữ liệu thiếu
 

@@ -4,7 +4,7 @@ Workspace phục vụ theo dõi danh mục đầu tư **cá nhân** (HOSE/HNX/UP
 
 ## Lệnh
 
-- `/briefing` — chạy toàn bộ quy trình briefing: đọc `DANH_MUC.md`, thu thập tin tức + giá thị trường + giá vàng, lấy BCTC quý gần nhất từ 24HMoney, tính P&L và khoảng cách stop-loss/target, sinh `briefing.html`, cập nhật `DANH_MUC.md`, rồi mở báo cáo.
+- `/briefing` — chạy toàn bộ quy trình briefing: đọc `DANH_MUC.md`, thu thập tin tức + giá thị trường + giá vàng, lấy BCTC quý gần nhất từ 24HMoney, tính P&L và khoảng cách stop-loss/target, sinh `briefing.html`, cập nhật `DANH_MUC.md`, mở báo cáo, rồi **commit & push toàn bộ lên git**.
 
 Đây là **lệnh duy nhất** của workspace. Chạy được ở bất kỳ thời điểm nào trong ngày (trước phiên / trong phiên / sau phiên) — báo cáo phải tự ghi rõ giá đang dùng là giá đóng cửa hay giá trong phiên.
 
