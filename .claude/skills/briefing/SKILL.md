@@ -15,18 +15,15 @@ Skill chạy được ở bất kỳ thời điểm nào trong ngày — **khôn
 
 ## Nguồn dữ liệu — thứ tự ưu tiên
 
-**Bước 0: kiểm tra MCP môi giới trước khi tra web.** Workspace có cấu hình MCP TCBS (`tcbs`, xem `.mcp.json`) — đây là tài khoản môi giới thật của người dùng.
+Toàn bộ dữ liệu thị trường lấy từ **web**:
 
-1. **Ưu tiên 1 — MCP `tcbs` nếu đã kết nối.** Đầu mỗi lần chạy, dùng `ToolSearch` với query `+tcbs` để xem MCP có tool nào. Có tool đọc được giá / vị thế / số dư thì **dùng nó thay cho web** cho đúng phần dữ liệu đó. Ghi trong báo cáo là nguồn TCBS kèm mốc giờ.
-2. **Ưu tiên 2 — web** (24HMoney, CafeF, Vietstock, Investing.com) cho phần MCP không có: tin tức, chỉ số thế giới, hàng hoá, giá vàng, BCTC.
-3. **MCP chưa kết nối** (`Pending approval`, chưa đăng nhập OAuth, hoặc `ToolSearch` không trả tool nào) → chạy hoàn toàn bằng web như cũ, và **nói rõ trong báo cáo là chưa dùng được TCBS** để người dùng biết mà đi đăng nhập.
+1. **Giá cổ phiếu** — 24HMoney, CafeF, Vietstock, cophieu68. Tách riêng truy vấn từng mã.
+2. **Tin tức, chỉ số thế giới, hàng hoá, giá vàng, BCTC** — 24HMoney, Investing.com, Simplize, giavang.org.
 
-Quy tắc khi có cả hai nguồn:
+Quy tắc:
 
-- **Số lượng và giá vốn: MCP thắng `DANH_MUC.md`.** Đây là dữ liệu tài khoản thật. Lệch nhau → lấy theo MCP, cập nhật `DANH_MUC.md`, và **báo rõ cho người dùng chỗ nào lệch bao nhiêu** (thường là do giao dịch chưa ghi vào file).
-- **Giá thị trường: MCP thắng web** vì là giá sàn thật, không qua trung gian.
-- **Tuyệt đối không im lặng ghi đè.** Mọi lần MCP làm đổi số trong `DANH_MUC.md` đều phải liệt kê ra trong phần báo lại.
-- **Không gọi tool giao dịch.** Nếu MCP có tool đặt/sửa/hủy lệnh hoặc chuyển tiền, briefing **chỉ đọc, không bao giờ gọi những tool đó** — kể cả khi báo cáo đang đề xuất mua/bán. Quyết định đặt lệnh là của người dùng.
+- **Số lượng và giá vốn chỉ lấy từ `DANH_MUC.md`** — dữ kiện giao dịch thật, không suy ra từ web và không tự sửa. Thiếu thì hỏi người dùng.
+- **Giá thị trường: đối chiếu chéo** với giá TT gần nhất trong `DANH_MUC.md`. Lệch bất thường → tra nguồn thứ hai; hai nguồn vẫn lệch thì báo cả hai số thay vì chọn bừa.
 
 ## Nguyên tắc bắt buộc
 

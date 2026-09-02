@@ -1,16 +1,5 @@
 # Thu thập & kiểm chứng dữ liệu
 
-## MCP môi giới TCBS (ưu tiên cao nhất)
-
-Trước khi tra web, chạy `ToolSearch` query `+tcbs` để xem MCP `tcbs` có tool nào khả dụng.
-
-- Có tool đọc **vị thế / số dư / sức mua** → dùng làm nguồn cho danh mục nắm giữ, số lượng, giá vốn, tiền mặt. Đây là dữ liệu tài khoản thật, thắng `DANH_MUC.md` khi lệch.
-- Có tool đọc **giá** → dùng làm nguồn giá thị trường, thay cho 24HMoney.
-- Không có tool tương ứng, hoặc MCP chưa đăng nhập → dùng web theo các mục dưới, và ghi rõ trong báo cáo là chưa dùng được TCBS.
-- **Chỉ đọc.** Không gọi tool đặt/sửa/hủy lệnh hay chuyển tiền trong bất kỳ trường hợp nào.
-
-Khi dùng MCP, vẫn **đối chiếu chéo** ít nhất giá của các mã đang nắm giữ với một nguồn web để phát hiện lỗi dữ liệu; lệch bất thường thì báo cả hai số thay vì chọn bừa.
-
 ## Giá thị trường cổ phiếu
 
 Lấy giá cho **tất cả** mã trong danh mục + chiến lược mua + watchlist.
