@@ -32,10 +32,11 @@ Quy tắc:
 3. **Tách riêng truy vấn từng mã.** Không gộp nhiều mã vào một lần search.
 4. **VIẾT CỰC GỌN.** Báo cáo là bảng tra cứu nhanh, không phải bài phân tích. Mỗi `<li>` tối đa **1 dòng ≤20 từ**; mỗi khối tối đa **4 bullet**; mọi số liệu nằm trong `<table>` và **không nhắc lại** ở phần diễn giải; một dữ kiện xuất hiện **đúng một lần** trong toàn báo cáo. Không lời dẫn, không chuyển ý. Giới hạn chi tiết: [references/report-spec.md](references/report-spec.md) — mục "Quy tắc độ dài".
 5. **Đây là thông tin tham khảo, không phải khuyến nghị đầu tư** — luôn giữ `div.disclaimer` ở đầu báo cáo.
+6. **CHẠY XONG LÀ COMMIT & PUSH LÊN GIT — BẮT BUỘC, KHÔNG HỎI LẠI.** Đây là một phần của việc "chạy skill", không phải việc làm thêm: gọi `/briefing` là mặc định đã bao gồm push. Chi tiết ở **Bước 7**. Chỉ được bỏ qua trong đúng hai trường hợp ở mục "Quy tắc an toàn khi push", và khi bỏ qua thì phải ghi rõ lý do một dòng lúc báo lại.
 
 ## Quy trình
 
-Tạo todo list 6 bước dưới đây rồi thực hiện tuần tự.
+Tạo todo list **8 bước** dưới đây rồi thực hiện tuần tự. **Bước 7 (push lên git) là một todo riêng — không được gộp vào bước khác và không được bỏ.** Chưa push xong thì skill chưa chạy xong.
 
 ### Bước 1 — Đọc danh mục (làm trước tiên)
 
@@ -66,7 +67,7 @@ Ngắn gọn: lấy giá khớp lệnh mới nhất (hoặc giá đóng cửa ph
 - Mọi mã đều phải có đủ Stop-loss/Target trước khi tới bước này — thiếu thì quay lại tự lập theo mục "Khi dữ liệu thiếu". Không có mã nào được để trống ô rủi ro trong báo cáo.
 - Tóm tắt 1 trang: 3 điểm chính + hành động đề xuất cho phiên gần nhất kế tiếp.
 
-### Bước 6 — Xuất báo cáo, đẩy lên git & trình cho người dùng
+### Bước 6 — Xuất báo cáo & cập nhật `DANH_MUC.md`
 
 1. Sinh `briefing.html` tại thư mục làm việc (ghi đè file cũ để đường dẫn cố định). Bắt đầu từ [assets/briefing-template.html](assets/briefing-template.html) — template đã chứa sẵn đúng CSS design system, **không tự đổi màu/font/layout**. Cấu trúc 7 mục và quy tắc bảng: [references/report-spec.md](references/report-spec.md).
 2. Cập nhật `DANH_MUC.md`: giá TT mới, mốc thời gian cập nhật, **mọi Stop-loss/Target vừa tự lập theo mục "Khi dữ liệu thiếu"**, và thêm một dòng vào bảng nhật ký kiểm tra trigger (nếu file có bảng này).
@@ -78,23 +79,32 @@ Ngắn gọn: lấy giá khớp lệnh mới nhất (hoặc giá đóng cửa ph
    set "SCRIPT_DIR=%~dp0"
    start "" "%SCRIPT_DIR%briefing.html"
    ```
-4. Mở báo cáo: `powershell -Command "Start-Process '<đường dẫn tuyệt đối>\briefing.html'"` (mở bằng trình duyệt mặc định — không phụ thuộc Chrome đã cài).
-5. **Commit & push toàn bộ kết quả lên git — bắt buộc, không hỏi lại.** Mỗi lần chạy xong đều đẩy lên remote để báo cáo không bị mất và để routine chạy trên máy khác luôn thấy bản mới nhất.
+4. Mở báo cáo: `powershell -Command "Start-Process '<đường dẫn tuyệt đối>\briefing.html'"` (mở bằng trình duyệt mặc định — không phụ thuộc Chrome đã cài). Trên macOS/Linux dùng `open <đường dẫn>` / `xdg-open <đường dẫn>`. Mở không được thì **vẫn tiếp tục Bước 7** — chỉ ghi lại đường dẫn cho người dùng tự mở, tuyệt đối không dừng skill ở đây.
 
-   ```bash
-   git add -A
-   git commit -m "Briefing DD/MM/YYYY HH:MM — <1 dòng ≤12 từ về diễn biến chính>"
-   git push origin HEAD
-   ```
+### Bước 7 — Commit & push lên git 🔴 BẮT BUỘC, KHÔNG HỎI LẠI
 
-   Quy tắc an toàn khi push:
+Đây là **todo riêng, luôn phải chạy** ngay sau Bước 6 — không gộp, không bỏ, không xin phép. Mỗi lần chạy xong đều đẩy lên remote để báo cáo không bị mất, và để routine chạy trên máy khác hoặc trên cloud luôn thấy bản mới nhất. **Chưa push xong thì skill chưa chạy xong.**
 
-   - Thư mục không phải git repo, hoặc `git remote -v` rỗng → **bỏ qua bước này**, ghi một dòng trong phần báo lại. Không tự `git init`, không tự thêm remote.
-   - Không có gì thay đổi (`git status` sạch) → bỏ qua, không tạo commit rỗng.
-   - Push bị từ chối vì remote đi trước → `git pull --rebase origin "$(git branch --show-current)"` rồi push lại một lần. Dùng đúng tên nhánh đang làm việc, **không dùng `origin HEAD`** — phía remote `HEAD` trỏ về nhánh mặc định của repo, nên nếu đang đứng ở nhánh khác thì sẽ rebase lên sai gốc.
-   - **Tuyệt đối không `git push --force`, không `git reset --hard`, không xoá hay sửa commit đã có.** Push thất bại hai lần → dừng, giữ nguyên commit ở local, báo rõ lý do cho người dùng để họ xử lý tay.
-   - Chỉ commit trên nhánh đang làm việc. Không tự tạo nhánh, không tự merge.
-6. Báo lại cho người dùng đường dẫn file + 3 điểm chính, kèm danh sách dữ liệu nào không tra được (nếu có), mọi Stop-loss/Target vừa tự lập, và **mã commit vừa push** (hoặc lý do không push được).
+```bash
+git add -A
+git commit -m "Briefing DD/MM/YYYY HH:MM — <1 dòng ≤12 từ về diễn biến chính>"
+git push origin "$(git branch --show-current)"
+```
+
+Quy tắc an toàn khi push:
+
+- Thư mục không phải git repo, hoặc `git remote -v` rỗng → **bỏ qua bước này**, ghi một dòng trong phần báo lại. Không tự `git init`, không tự thêm remote.
+- Không có gì thay đổi (`git status` sạch) → bỏ qua, không tạo commit rỗng.
+- Push bị từ chối vì remote đi trước → `git pull --rebase origin "$(git branch --show-current)"` rồi push lại một lần. Dùng đúng tên nhánh đang làm việc, **không dùng `origin HEAD`** — phía remote `HEAD` trỏ về nhánh mặc định của repo, nên nếu đang đứng ở nhánh khác thì sẽ rebase lên sai gốc.
+- **Tuyệt đối không `git push --force`, không `git reset --hard`, không xoá hay sửa commit đã có.** Push thất bại hai lần → dừng, giữ nguyên commit ở local, báo rõ lý do cho người dùng để họ xử lý tay.
+- Chỉ commit trên nhánh đang làm việc. Không tự tạo nhánh, không tự merge.
+- Lệnh bị chặn quyền (permission denied) → **không thử lại y nguyên**; báo cho người dùng đúng lệnh cần chạy tay.
+
+Xong bước này phải xác nhận được **mã commit đã lên remote** (`git log --oneline -1` và `git status` cho thấy nhánh không còn "ahead"). Không có mã commit thì coi như Bước 7 chưa đạt.
+
+### Bước 8 — Báo lại cho người dùng
+
+Báo đường dẫn file + 3 điểm chính, kèm danh sách dữ liệu nào không tra được (nếu có), mọi Stop-loss/Target vừa tự lập, và **mã commit vừa push** (hoặc lý do không push được).
 
 ## Khi dữ liệu thiếu
 
@@ -102,7 +112,7 @@ Phân biệt hai loại dữ liệu thiếu — xử lý khác nhau:
 
 ### Loại 1 — Dữ liệu chỉ người dùng biết → hỏi
 
-Giá vốn, số lượng, tiền mặt: đây là dữ kiện giao dịch thật, **không được suy ra**. Vẫn làm đủ bước 2, 3, 5, 6; bỏ phần P&L của mã đó; nhắc người dùng bổ sung đúng ô còn trống.
+Giá vốn, số lượng, tiền mặt: đây là dữ kiện giao dịch thật, **không được suy ra**. Vẫn làm đủ mọi bước còn lại — **kể cả Bước 7 (push lên git)**; bỏ phần P&L của mã đó; nhắc người dùng bổ sung đúng ô còn trống.
 
 ### Loại 2 — Stop-loss / Target thiếu → TỰ LẬP, KHÔNG HỎI
 
